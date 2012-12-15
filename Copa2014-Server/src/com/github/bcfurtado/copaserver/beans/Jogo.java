@@ -1,6 +1,6 @@
 package com.github.bcfurtado.copaserver.beans;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,6 +17,8 @@ public class Jogo {
 	private Time time_b;
 	private Estadio local;
 	private Date horario;
+	
+	private boolean ativo;
 	
 	public Long getId(){
 		return id;
@@ -53,5 +55,22 @@ public class Jogo {
 	public Date getHorario(){
 		return horario;
 	}
+
+	public boolean isAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(boolean ativo) {
+		this.ativo = ativo;
+	}
+	
+	public void ativar(){
+		this.setAtivo(true);
+	}
+
+	public void desativar(){
+		this.setAtivo(false);
+	}
+
 	
 }
