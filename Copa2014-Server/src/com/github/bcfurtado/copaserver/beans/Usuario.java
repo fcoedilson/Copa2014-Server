@@ -2,17 +2,16 @@ package com.github.bcfurtado.copaserver.beans;
 
 import javax.persistence.*;
 
-//Linhas comentadas para rodar a aplicação antes que toda ela estivesse pronta
-
 @Entity
 
 public class Usuario {
 	
 	@Id
 	private Long id_facebook;
-//	@OneToMany
-//	private Time time;
+	@OneToMany
+	private Time time;
 	private String email;
+	private boolean ativo;
 	
 	public Long getId(){
 		return id_facebook;
@@ -22,9 +21,9 @@ public class Usuario {
 		this.id_facebook = id_facebook;
 	}
 	
-//	public Time getTime(){
-//		return time;
-//	}
+	public Time getTime(){
+		return time;
+	}
 	
 	public String getEmail(){
 		return email;
@@ -34,8 +33,20 @@ public class Usuario {
 		this.email = email;
 	}
 	
-//	public void setTime(Time time){
-//		this.time = time;
-//	}
+	public void setTime(Time time){
+		this.time = time;
+	}
+	
+	public boolean isAtivo(){
+		return ativo;
+	}
+
+	public void ativar(){
+		this.ativo = true;
+	}
+	
+	public void desativar(){
+		this.ativo = false;
+	}
 	
 }

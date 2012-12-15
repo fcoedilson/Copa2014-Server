@@ -1,5 +1,37 @@
 package com.github.bcfurtado.copaserver.beans;
 
-public class Noticia {
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
+@Entity
+
+public class Noticia {
+	
+	@Id
+	@GeneratedValue
+	private Long id;
+	private String titulo;
+	private String corpo;
+	
+	public Long getId(){
+		return id;
+	}
+	
+	public void setTitulo(String titulo){
+		this.titulo = titulo;
+	}
+	
+	public String getTitulo(){
+		return titulo;
+	}
+	
+	public void setCorpo(String corpo){
+		this.corpo = corpo;
+	}
+	
+	public String getCorpo(){
+		return corpo;
+	}
+	
 }
