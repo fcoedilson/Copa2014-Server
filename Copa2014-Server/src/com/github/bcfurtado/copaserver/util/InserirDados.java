@@ -13,19 +13,40 @@ public class InserirDados {
 		
 		session.beginTransaction();
 		
-		Time time = new Time();
-		time.setNome("Brasil");
+		Time timeBrasil = new Time();
+		timeBrasil.setNome("Brasil");
+		timeBrasil.ativar();
 		
-		Usuario usuario = new Usuario();
-		usuario.setId((long) 1231231421);
-		usuario.setEmail("rhonanc@gmail.com");
-		usuario.setTime(time);
+		Usuario usuarioTeste1 = new Usuario();
+		usuarioTeste1.setId((long) 1);
+		usuarioTeste1.setEmail("teste1@gmail.com");
+		usuarioTeste1.setTime(timeBrasil);
+		usuarioTeste1.ativar();
 		
-		session.save(time);
-		session.save(usuario);
-		session.getTransaction().commit();
-		
-		
+		session.save(timeBrasil);
+		session.save(usuarioTeste1);
+
+		session.getTransaction().commit();	
 		session.close();
+		
+		Session session2 = GeraTabelas.preparaSessao();
+		
+		session2.beginTransaction();
+		
+		Time timeArgentina = new Time();
+		timeArgentina.setNome("Argentina");
+		timeArgentina.ativar();
+		
+		Usuario usuarioTeste2 = new Usuario();
+		usuarioTeste2.setId((long) 2);
+		usuarioTeste2.setEmail("teste2@gmail.com");
+		usuarioTeste2.setTime(timeArgentina);
+		usuarioTeste2.ativar();
+		
+		session2.save(timeArgentina);
+		session2.save(usuarioTeste2);
+		
+		session2.getTransaction().commit();	
+		session2.close();
 	}
 }

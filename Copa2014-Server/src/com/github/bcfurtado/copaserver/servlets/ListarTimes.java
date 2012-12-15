@@ -1,37 +1,45 @@
 package com.github.bcfurtado.copaserver.servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class ListarTimes
- */
+import net.sf.json.JSONArray;
+import com.github.bcfurtado.copaserver.beans.Time;
+import com.github.bcfurtado.copaserver.controladores.ControladorTimes;
+
+
 public class ListarTimes extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+	private ControladorTimes controladorTimes;
+	
     public ListarTimes() {
         super();
-        // TODO Auto-generated constructor stub
-    }
+        controladorTimes = new ControladorTimes();    
+        }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doPost(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		List<Time> time = controladorTimes.pegarTodosOsTimes();
+		
+		HashMap<String,String> hm = new HashMap<String,String>();
+		
+		JSONArray json = JSONArray.fromObject(time);
+		response.setContentType("application/json");
+        
+		PrintWriter out = response.getWriter();
+        out.print(json);
+        out.flush();
 	}
 
 }

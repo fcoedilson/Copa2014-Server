@@ -27,6 +27,7 @@ public class ControladorUsuarios {
 		usuario.setId(id_facebook);
 		usuario.setTime(time);
 		usuario.setEmail(email);
+		usuario.ativar();
 		
 		session.beginTransaction();
 		session.save(usuario);
