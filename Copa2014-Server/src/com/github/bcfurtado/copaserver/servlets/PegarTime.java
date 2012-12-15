@@ -1,23 +1,27 @@
 package com.github.bcfurtado.copaserver.servlets;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class PegarTime
- */
+import net.sf.json.JSONObject;
+
+import com.github.bcfurtado.copaserver.beans.Time;
+import com.github.bcfurtado.copaserver.controladores.ControladorTimes;
+
+
 public class PegarTime extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
+    private ControladorTimes controladorTimes;
+	
     public PegarTime() {
-        super();
-        // TODO Auto-generated constructor stub
+    	
+        controladorTimes = new ControladorTimes();
     }
 
 	/**
@@ -27,11 +31,21 @@ public class PegarTime extends HttpServlet {
 		doPost(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+
+		Long id_time = Long.parseLong(request.getParameter("id_time"));
+		Time time = controladorTimes.pegarTimePeloId(id_time);
+		
+		if ( id_time != null && time != null) {
+			JSONObject json = JSONObject.fromObject(time);
+			
+			response.setContentType("application/json");	        
+			PrintWriter out = response.getWriter();
+	        out.print(json);
+	        out.flush();
+		}
+	
+		
 	}
 
 }
