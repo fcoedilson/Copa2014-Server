@@ -13,7 +13,6 @@ public class Estadio {
 	private String nome;
 	private float latitude;
 	private float longitude;
-	private boolean ativo;
 	
 	public Long getId(){
 		return id;
@@ -41,22 +40,6 @@ public class Estadio {
 	
 	public float getLongitude(){
 		return longitude;
-	}
-	
-	public boolean isAtivo() {
-		return ativo;
-	}
-
-	public void setAtivo(boolean ativo) {
-		this.ativo = ativo;
-	}
-	
-	public void ativar(){
-		this.setAtivo(true);
-	}
-
-	public void desativar(){
-		this.setAtivo(false);
 	}
 	
 }

@@ -14,8 +14,6 @@ public class Noticia {
 	private String titulo;
 	private String corpo;
 	
-	private boolean ativo;
-	
 	public Long getId(){
 		return id;
 	}
@@ -35,20 +33,5 @@ public class Noticia {
 	public String getCorpo(){
 		return corpo;
 	}
-
-	public boolean isAtivo() {
-		return ativo;
-	}
-
-	public void setAtivo(boolean ativo) {
-		this.ativo = ativo;
-	}
 	
-	public void ativar(){
-		this.setAtivo(true);
-	}
-
-	public void desativar(){
-		this.setAtivo(false);
-	}
 }

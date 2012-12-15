@@ -1,14 +1,21 @@
 package com.github.bcfurtado.copaserver.beans;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
 
 @Entity
+@Table(name="usuario")
 
 public class Usuario {
 	
 	@Id
 	private Long id_facebook;
-	@OneToMany
+	@ManyToOne
+	@JoinColumn(name="time_id")
 	private Time time;
 	private String email;
 	private boolean ativo;

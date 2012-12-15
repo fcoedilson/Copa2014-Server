@@ -8,6 +8,10 @@ import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.classic.Session;
 import org.hibernate.tool.hbm2ddl.SchemaExport;
 
+import com.github.bcfurtado.copaserver.beans.Estadio;
+import com.github.bcfurtado.copaserver.beans.Jogo;
+import com.github.bcfurtado.copaserver.beans.Noticia;
+import com.github.bcfurtado.copaserver.beans.Time;
 import com.github.bcfurtado.copaserver.beans.Usuario;
 
 
@@ -50,7 +54,10 @@ public class GeraTabelas {
 
 		// classes.add(SuaClasseAqui.class);
 		classes.add(Usuario.class);
-
+		classes.add(Time.class);
+//		classes.add(Estadio.class);
+//		classes.add(Jogo.class);
+//		classes.add(Noticia.class);
 
 		return classes;
 	}
