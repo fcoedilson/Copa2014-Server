@@ -32,11 +32,10 @@ public class CadastrarUsuario extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Long id_facebook = Long.parseLong(request.getParameter("id_facebook"));
+		String id_facebook = request.getParameter("id_facebook");
 		String email = request.getParameter("email");
-		Long id_time = Long.parseLong(request.getParameter("id_time"));
+		String id_time = request.getParameter("id_time");
 		
-		Time time = controladorTimes.pegarTimePeloId(id_time);
 		
 		boolean cadastrar = true;
 		if (id_facebook == null || email == null || email.isEmpty() || id_time == null) {
@@ -44,9 +43,13 @@ public class CadastrarUsuario extends HttpServlet {
 		}
 		
 		if (cadastrar) {
-			controladorUsuarios.cadastrarUsuario(id_facebook, time,email);
+			Long id_facebook_long = Long.parseLong(id_facebook);
+			Long id_time_long = Long.parseLong(id_time);
+			Time time = controladorTimes.pegarTimePeloId(id_time_long);
+
+			controladorUsuarios.cadastrarUsuario(id_facebook_long, time,email);
 			HashMap<String,String> hm = new HashMap<String,String>();
-			hm.put("message","Usu‡rio cadastrado.");
+			hm.put("message","Usuario cadastrado.");
 			
 			JSONObject json = JSONObject.fromObject(hm);
 			
@@ -54,6 +57,10 @@ public class CadastrarUsuario extends HttpServlet {
             
 			PrintWriter out = response.getWriter();
             out.print(json);
+            out.flush();
+		} else {
+			PrintWriter out = response.getWriter();
+            out.print("NÃ£o foi possivel realizar o cadastro.");
             out.flush();
 		}
 	}
