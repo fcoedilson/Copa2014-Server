@@ -10,7 +10,6 @@ import org.hibernate.criterion.Restrictions;
 import com.github.bcfurtado.copaserver.beans.Estadio;
 import com.github.bcfurtado.copaserver.beans.Jogo;
 import com.github.bcfurtado.copaserver.beans.Time;
-import com.github.bcfurtado.copaserver.repositorios.TodosOsEstadios;
 import com.github.bcfurtado.copaserver.repositorios.TodosOsJogos;
 import com.github.bcfurtado.copaserver.util.PreparaSessao;
 

@@ -2,6 +2,7 @@ package com.github.bcfurtado.copaserver.util;
 
 import org.hibernate.classic.Session;
 
+import com.github.bcfurtado.copaserver.beans.Noticia;
 import com.github.bcfurtado.copaserver.beans.Time;
 import com.github.bcfurtado.copaserver.beans.Usuario;
 import com.github.bcfurtado.copaserver.util.GeraTabelas;
@@ -23,6 +24,12 @@ public class InserirDados {
 		usuarioTeste1.setTime(timeBrasil);
 		usuarioTeste1.ativar();
 		
+		Noticia noticiaTeste1 = new Noticia();
+		noticiaTeste1.setTitulo("Brasil ser‡ sede da copa de 2014");
+		noticiaTeste1.setCorpo("A FIFA decidiu que o Brasil sediar‡ a copa do mundo de 2014.");
+		noticiaTeste1.ativar();
+		
+		session.save(noticiaTeste1);
 		session.save(timeBrasil);
 		session.save(usuarioTeste1);
 
@@ -43,6 +50,12 @@ public class InserirDados {
 		usuarioTeste2.setTime(timeArgentina);
 		usuarioTeste2.ativar();
 		
+		Noticia noticiaTeste2 = new Noticia();
+		noticiaTeste2.setTitulo("Corinthians Bi-Campe‹o Mundial!");
+		noticiaTeste2.setCorpo("Domingo (17/12) o Corinthians foi Bi-Campe‹o Mundial em cima do Chelsea.");
+		noticiaTeste2.ativar();
+		
+		session2.save(noticiaTeste2);
 		session2.save(timeArgentina);
 		session2.save(usuarioTeste2);
 		

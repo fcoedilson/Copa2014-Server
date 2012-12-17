@@ -8,7 +8,6 @@ import org.hibernate.criterion.Restrictions;
 
 import com.github.bcfurtado.copaserver.beans.Noticia;
 import com.github.bcfurtado.copaserver.repositorios.TodasAsNoticias;
-import com.github.bcfurtado.copaserver.repositorios.TodosOsEstadios;
 import com.github.bcfurtado.copaserver.util.PreparaSessao;
 
 public class ControladorNoticias {

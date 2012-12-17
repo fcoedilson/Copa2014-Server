@@ -19,14 +19,10 @@ public class PegarTime extends HttpServlet {
        
     private ControladorTimes controladorTimes;
 	
-    public PegarTime() {
-    	
+    public PegarTime() {    	
         controladorTimes = new ControladorTimes();
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doPost(request, response);
 	}
@@ -44,7 +40,6 @@ public class PegarTime extends HttpServlet {
 	        out.print(json);
 	        out.flush();
 		}
-	
 		
 	}
 
