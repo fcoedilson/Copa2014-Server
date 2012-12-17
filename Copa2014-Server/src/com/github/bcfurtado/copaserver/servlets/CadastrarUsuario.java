@@ -47,17 +47,23 @@ public class CadastrarUsuario extends HttpServlet {
 			Long id_time_long = Long.parseLong(id_time);
 			Time time = controladorTimes.pegarTimePeloId(id_time_long);
 
-			controladorUsuarios.cadastrarUsuario(id_facebook_long, time,email);
+			boolean sucesso = controladorUsuarios.cadastrarUsuario(id_facebook_long, time,email);
+
 			HashMap<String,String> hm = new HashMap<String,String>();
-			hm.put("message","Usuario cadastrado.");
+			if (sucesso){
+				hm.put("mensagem","Usuario cadastrado com Sucesso.");
+				hm.put("status", "1");	//true
+			} else {
+				hm.put("mensagem","Não foi possivel cadastar o usuário.");
+				hm.put("status", "0");	//false
+			}
 			
-			JSONObject json = JSONObject.fromObject(hm);
-			
-			response.setContentType("application/json");
-            
 			PrintWriter out = response.getWriter();
+			JSONObject json = JSONObject.fromObject(hm);
+			response.setContentType("application/json");
             out.print(json);
             out.flush();
+            
 		} else {
 			PrintWriter out = response.getWriter();
             out.print("Não foi possivel realizar o cadastro.");

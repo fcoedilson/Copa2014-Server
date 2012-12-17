@@ -3,6 +3,7 @@ package com.github.bcfurtado.copaserver.controladores;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.HibernateException;
 import org.hibernate.classic.Session;
 import org.hibernate.criterion.Restrictions;
 
@@ -21,7 +22,7 @@ public class ControladorUsuarios {
 		todosOsUsuarios = new TodosOsUsuarios();
 	}
 
-	public void cadastrarUsuario(Long id_facebook, Time time, String email) {
+	public boolean cadastrarUsuario(Long id_facebook, Time time, String email) {
 
 		Usuario usuario = new Usuario();
 		usuario.setId(id_facebook);
@@ -29,9 +30,18 @@ public class ControladorUsuarios {
 		usuario.setEmail(email);
 		usuario.ativar();
 		
-		session.beginTransaction();
-		session.save(usuario);
-		session.getTransaction().commit();
+		try {
+			session.beginTransaction();
+			session.save(usuario);
+			session.getTransaction().commit();
+			return true;
+		} catch (HibernateException e) {
+			return false;
+		} catch (Exception e) {
+			return false;
+		}
+		
+		//return session.getTransaction().wasCommitted();
 		
 	}
 

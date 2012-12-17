@@ -1,5 +1,6 @@
 package com.github.bcfurtado.copaserver.beans;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -17,6 +18,7 @@ public class Usuario {
 	@ManyToOne
 	@JoinColumn(name="time_id")
 	private Time time;
+	@Column(unique=true)
 	private String email;
 	private boolean ativo;
 	
