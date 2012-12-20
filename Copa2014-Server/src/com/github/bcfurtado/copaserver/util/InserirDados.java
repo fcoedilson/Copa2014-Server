@@ -25,8 +25,8 @@ public class InserirDados {
 		usuarioTeste1.ativar();
 		
 		Noticia noticiaTeste1 = new Noticia();
-		noticiaTeste1.setTitulo("Brasil será sede da copa de 2014");
-		noticiaTeste1.setCorpo("A FIFA decidiu que o Brasil sediará a copa do mundo de 2014.");
+		noticiaTeste1.setTitulo("Brasil ser a sede da copa de 2014");
+		noticiaTeste1.setCorpo("A FIFA decidiu que o Brasil ir√° sediar a copa do mundo de 2014.");
 		noticiaTeste1.ativar();
 		
 		session.save(noticiaTeste1);
@@ -51,8 +51,8 @@ public class InserirDados {
 		usuarioTeste2.ativar();
 		
 		Noticia noticiaTeste2 = new Noticia();
-		noticiaTeste2.setTitulo("Corinthians Bi-Campeão Mundial!");
-		noticiaTeste2.setCorpo("Domingo (17/12) o Corinthians foi Bi-Campeão Mundial em cima do Chelsea.");
+		noticiaTeste2.setTitulo("Corinthians Bi-Campe√£o Mundial!");
+		noticiaTeste2.setCorpo("Domingo (17/12) o Corinthians foi Bi-Campe√£o Mundial em cima do Chelsea.");
 		noticiaTeste2.ativar();
 		
 		session2.save(noticiaTeste2);

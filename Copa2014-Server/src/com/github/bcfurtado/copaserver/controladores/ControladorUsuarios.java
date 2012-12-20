@@ -39,10 +39,7 @@ public class ControladorUsuarios {
 			return false;
 		} catch (Exception e) {
 			return false;
-		}
-		
-		//return session.getTransaction().wasCommitted();
-		
+		}		
 	}
 
 	public void atualizarUsuario(Usuario usuario) {
