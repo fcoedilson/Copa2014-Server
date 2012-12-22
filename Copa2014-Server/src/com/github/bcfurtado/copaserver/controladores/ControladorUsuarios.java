@@ -30,6 +30,7 @@ public class ControladorUsuarios {
 		usuario.setEmail(email);
 		usuario.ativar();
 		
+		session = PreparaSessao.pegarSessao();
 		try {
 			session.beginTransaction();
 			session.save(usuario);
@@ -39,16 +40,21 @@ public class ControladorUsuarios {
 			return false;
 		} catch (Exception e) {
 			return false;
-		}		
+		} finally {
+			session.close();
+		}
 	}
 
 	public void atualizarUsuario(Usuario usuario) {
+		session = PreparaSessao.pegarSessao();
 		session.beginTransaction();
 		session.update(usuario);
 		session.getTransaction().commit();
+		session.close();
 	}
 
 	public void removerUsuario( Long id_facebook ){
+		session = PreparaSessao.pegarSessao();
 		Criteria criteria = session.createCriteria(Usuario.class)
 				.add(Restrictions.eq("id_facebook", id_facebook));
 		
@@ -62,15 +68,19 @@ public class ControladorUsuarios {
 			usuario.desativar();
 			session.update(usuario);
 			session.getTransaction().commit();
+		} finally {
+			session.close();
 		}
 
 	}
 
 	public Usuario pegarUsuarioPeloId(Long id_facebook) {
+		session = PreparaSessao.pegarSessao();
 		Criteria criteria = session.createCriteria(Usuario.class)
 				.add(Restrictions.eq("id_facebook", id_facebook));
 		
 		Usuario usuario = (Usuario) criteria.uniqueResult();
+		session.close();
 		return usuario;
 	}
 
@@ -79,11 +89,13 @@ public class ControladorUsuarios {
 	}
 	
 	public Usuario autorizarUsuario(Time time, String email) {
+		session = PreparaSessao.pegarSessao();
 		Criteria criteria = session.createCriteria(Usuario.class)
 				.add(Restrictions.eq("time", time))
 				.add(Restrictions.eq("email", email));
 
 		Usuario usuario = (Usuario) criteria.uniqueResult();
+		session.close();
 		
 		if ( usuario != null) {
 			if (usuario.isAtivo()) {

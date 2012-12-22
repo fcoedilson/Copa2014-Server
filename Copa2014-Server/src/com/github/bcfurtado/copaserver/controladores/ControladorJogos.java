@@ -19,7 +19,6 @@ public class ControladorJogos {
 	private TodosOsJogos todosOsJogos;
 
 	public ControladorJogos() {
-		session = PreparaSessao.pegarSessao();
 		todosOsJogos = new TodosOsJogos();
 	}
 
@@ -30,16 +29,21 @@ public class ControladorJogos {
 		jogo.setLocal(local);
 		jogo.setHorario(horario);
 		jogo.ativar();
-
+		
+		session = PreparaSessao.pegarSessao();
 		session.beginTransaction();
 		session.save(jogo);
 		session.getTransaction().commit();
+		session.close();
+		
 	}
 
 	public void atualizarJogo(Jogo jogo) {
+		session = PreparaSessao.pegarSessao();
 		session.beginTransaction();
 		session.update(jogo);
 		session.getTransaction().commit();
+		session.close();
 	}
 
 	public void removerJogo(Long id) {
@@ -48,6 +52,7 @@ public class ControladorJogos {
 
 		Jogo jogo = (Jogo)criteria.uniqueResult();
 
+		session = PreparaSessao.pegarSessao();
 		session.beginTransaction();
 		try {
 			session.delete(jogo);
@@ -56,16 +61,19 @@ public class ControladorJogos {
 			jogo.desativar();
 			session.update(jogo);
 			session.getTransaction().commit();
+		} finally {
+			session.close();
 		}
 
 	}
 
 	public Jogo pegarJogoPeloId(Long id) {
-
+		session = PreparaSessao.pegarSessao();
 		Criteria criteria = session.createCriteria(Jogo.class)
 				.add(Restrictions.eq("id", id));
 
 		Jogo jogo = (Jogo) criteria.uniqueResult();
+		session.close();
 		return jogo;
 	}
 

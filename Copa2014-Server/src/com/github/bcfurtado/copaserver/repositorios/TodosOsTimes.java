@@ -14,21 +14,24 @@ public class TodosOsTimes {
 	private Session session;
 
 	public TodosOsTimes() {
-		session = PreparaSessao.pegarSessao();
 	}
 	
 	public List<Time> pegarTodosOsTimesAtivados() {
+		session = PreparaSessao.pegarSessao();
 		Criteria criteria = session.createCriteria(Time.class)
 				.add(Restrictions.eq("ativo", true));
 		List<Time> times = criteria.list();
+		session.close();
 		
 		return times;
 	}
 	
 	public List<Time> pegarTodosOsTimesDesativados() {
+		session = PreparaSessao.pegarSessao();
 		Criteria criteria = session.createCriteria(Time.class)
 				.add(Restrictions.eq("ativo", false));
 		List<Time> times = criteria.list();
+		session.close();
 		
 		return times;
 	}

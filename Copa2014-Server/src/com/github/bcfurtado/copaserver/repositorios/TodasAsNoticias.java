@@ -14,21 +14,23 @@ public class TodasAsNoticias {
 	private Session session;
 
 	public TodasAsNoticias() {
-		session = PreparaSessao.pegarSessao();
 	}
 
 	public List<Noticia> pegarTodosAsNoticiasAtivadas() {
+		session = PreparaSessao.pegarSessao();
 		Criteria criteria = session.createCriteria(Noticia.class)
 				.add(Restrictions.eq("ativo", true));
 		List<Noticia> noticias = criteria.list();
-
+		session.close();
 		return noticias;
 	}
 
 	public List<Noticia> pegarTodasAsNoticiasDesativadas() {
+		session = PreparaSessao.pegarSessao();
 		Criteria criteria = session.createCriteria(Noticia.class)
 				.add(Restrictions.eq("ativo", false));
 		List<Noticia> noticias = criteria.list();
+		session.close();
 
 		return noticias;
 	}

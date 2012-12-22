@@ -15,22 +15,25 @@ public class TodosOsEstadios {
 	private Session session;
 
 	public TodosOsEstadios() {
-		session = PreparaSessao.pegarSessao();
 	}
 
 	public List<Estadio> pegarTodosOsEstadiosAtivados() {
+		session = PreparaSessao.pegarSessao();
 		Criteria criteria = session.createCriteria(Estadio.class)
 				.add(Restrictions.eq("ativo", true));
 		List<Estadio> estadios = criteria.list();
-
+		session.close();
+		
 		return estadios;
 	}
 
 	public List<Estadio> pegarTodosOsEstadiosDesativados() {
+		session = PreparaSessao.pegarSessao();
 		Criteria criteria = session.createCriteria(Estadio.class)
 				.add(Restrictions.eq("ativo", false));
 		List<Estadio> estadios = criteria.list();
-
+		session.close();
+		
 		return estadios;
 	}
 

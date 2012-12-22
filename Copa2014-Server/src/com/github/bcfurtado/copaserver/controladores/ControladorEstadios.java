@@ -17,7 +17,6 @@ public class ControladorEstadios {
 	private TodosOsEstadios todosOsEstadios;
 
 	public ControladorEstadios() {
-		session = PreparaSessao.pegarSessao();
 		todosOsEstadios = new TodosOsEstadios();
 	}
 
@@ -27,16 +26,20 @@ public class ControladorEstadios {
 		estadio.setLatitude(latitude);
 		estadio.setLongitude(longitude);
 		estadio.ativar();
-
+		
+		session = PreparaSessao.pegarSessao();
 		session.beginTransaction();
 		session.save(estadio);
 		session.getTransaction().commit();
+		session.close();
 	}
 
 	public void atualizarEstadio(Estadio estadio) {
+		session = PreparaSessao.pegarSessao();
 		session.beginTransaction();
 		session.update(estadio);
 		session.getTransaction().commit();
+		session.close();
 	}
 
 	public void removerEstadio(Long id) {
@@ -45,6 +48,7 @@ public class ControladorEstadios {
 
 		Estadio estadio = (Estadio)criteria.uniqueResult();
 
+		session = PreparaSessao.pegarSessao();
 		session.beginTransaction();
 		try {
 			session.delete(estadio);
@@ -53,16 +57,20 @@ public class ControladorEstadios {
 			estadio.desativar();
 			session.update(estadio);
 			session.getTransaction().commit();
+		} finally {
+			session.close();
 		}
 
 	}
 
 	public Estadio pegarEstadioPeloId(Long id) {
-
+		session = PreparaSessao.pegarSessao();
 		Criteria criteria = session.createCriteria(Estadio.class)
 				.add(Restrictions.eq("id", id));
 
 		Estadio estadio = (Estadio) criteria.uniqueResult();
+		session.close();
+		
 		return estadio;
 	}
 

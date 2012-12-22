@@ -13,13 +13,13 @@ public class TodosOsUsuarios {
 	private Session session;
 	
 	public TodosOsUsuarios(){
-		session = PreparaSessao.pegarSessao();
 	}
 
 	public List<Usuario> pegarTodosOsUsuarios() {
+		session = PreparaSessao.pegarSessao();
 		Criteria criteria = session.createCriteria(Usuario.class);
 		List<Usuario> usuarios = criteria.list();
-
+		session.close();
 		
 		return usuarios;
 

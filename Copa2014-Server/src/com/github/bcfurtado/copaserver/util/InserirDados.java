@@ -5,12 +5,11 @@ import org.hibernate.classic.Session;
 import com.github.bcfurtado.copaserver.beans.Noticia;
 import com.github.bcfurtado.copaserver.beans.Time;
 import com.github.bcfurtado.copaserver.beans.Usuario;
-import com.github.bcfurtado.copaserver.util.GeraTabelas;
 
 public class InserirDados {
 	public static void povoar(){
 		
-		Session session = GeraTabelas.preparaSessao();
+		Session session = PreparaSessao.pegarSessao();
 		
 		session.beginTransaction();
 		
@@ -36,9 +35,9 @@ public class InserirDados {
 		session.getTransaction().commit();	
 		session.close();
 		
-		Session session2 = GeraTabelas.preparaSessao();
+		session = PreparaSessao.pegarSessao();
 		
-		session2.beginTransaction();
+		session.beginTransaction();
 		
 		Time timeArgentina = new Time();
 		timeArgentina.setNome("Argentina");
@@ -55,11 +54,11 @@ public class InserirDados {
 		noticiaTeste2.setCorpo("Domingo (17/12) o Corinthians foi Bi-Campeão Mundial em cima do Chelsea.");
 		noticiaTeste2.ativar();
 		
-		session2.save(noticiaTeste2);
-		session2.save(timeArgentina);
-		session2.save(usuarioTeste2);
+		session.save(noticiaTeste2);
+		session.save(timeArgentina);
+		session.save(usuarioTeste2);
 		
-		session2.getTransaction().commit();	
-		session2.close();
+		session.getTransaction().commit();	
+		session.close();
 	}
 }

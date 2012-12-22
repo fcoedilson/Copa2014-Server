@@ -14,22 +14,25 @@ public class TodosOsJogos {
 	private Session session;
 
 	public TodosOsJogos() {
-		session = PreparaSessao.pegarSessao();
 	}
 
 	public List<Jogo> pegarTodosOsJogosAtivados() {
+		session = PreparaSessao.pegarSessao();
 		Criteria criteria = session.createCriteria(Jogo.class)
 				.add(Restrictions.eq("ativo", true));
 		List<Jogo> jogos = criteria.list();
+		session.close();
 
 		return jogos;
 	}
 
 	public List<Jogo> pegarTodosOsJogosDesativados() {
+		session = PreparaSessao.pegarSessao();
 		Criteria criteria = session.createCriteria(Jogo.class)
 				.add(Restrictions.eq("ativo", false));
 		List<Jogo> jogos = criteria.list();
-
+		session.close();
+		
 		return jogos;
 	}
 

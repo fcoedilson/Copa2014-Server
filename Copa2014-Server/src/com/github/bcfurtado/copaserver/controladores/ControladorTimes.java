@@ -16,7 +16,6 @@ public class ControladorTimes {
 	private TodosOsTimes todosOsTimes;
 	
 	public ControladorTimes() {
-		session = PreparaSessao.pegarSessao();
 		todosOsTimes = new TodosOsTimes();
 	}
 	
@@ -25,18 +24,23 @@ public class ControladorTimes {
 		time.setNome(nome);
 		time.ativar();
 		
+		session = PreparaSessao.pegarSessao();
 		session.beginTransaction();
 		session.save(time);
 		session.getTransaction().commit();
+		session.close();
 	}
 
 	public void atualizarTime(Time time) {
+		session = PreparaSessao.pegarSessao();
 		session.beginTransaction();
 		session.update(time);
 		session.getTransaction().commit();
+		session.close();
 	}
 
 	public void removerTime(Long id) {
+		session = PreparaSessao.pegarSessao();
 		Criteria criteria = session.createCriteria(Time.class)
 				.add(Restrictions.eq("id", id));
 		
@@ -50,16 +54,19 @@ public class ControladorTimes {
 			time.desativar();
 			session.update(time);
 			session.getTransaction().commit();
+		} finally {
+			session.close();
 		}
 
 	}
 
 	public Time pegarTimePeloId(Long id) {
-
+		session = PreparaSessao.pegarSessao();
 		Criteria criteria = session.createCriteria(Time.class)
 				.add(Restrictions.eq("id", id));
 		
 		Time time = (Time) criteria.uniqueResult();
+		session.close();
 		return time;
 	}
 	
