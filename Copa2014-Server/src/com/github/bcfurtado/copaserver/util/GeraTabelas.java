@@ -55,8 +55,8 @@ public class GeraTabelas {
 		// classes.add(SuaClasseAqui.class);
 		classes.add(Usuario.class);
 		classes.add(Time.class);
-//		classes.add(Estadio.class);
-//		classes.add(Jogo.class);
+		classes.add(Estadio.class);
+		classes.add(Jogo.class);
 		classes.add(Noticia.class);
 
 		return classes;

@@ -16,7 +16,6 @@ public class ControladorNoticias {
 	private TodasAsNoticias todasAsNoticias;
 
 	public ControladorNoticias() {
-		session = PreparaSessao.pegarSessao();
 		todasAsNoticias = new TodasAsNoticias();
 	}
 

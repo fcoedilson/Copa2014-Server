@@ -1,6 +1,6 @@
 package com.github.bcfurtado.copaserver.controladores;
 
-import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import org.hibernate.Criteria;
@@ -22,7 +22,7 @@ public class ControladorJogos {
 		todosOsJogos = new TodosOsJogos();
 	}
 
-	public void cadastrarJogo(Time time_a, Time time_b, Estadio local, Date horario) {
+	public void cadastrarJogo(Time time_a, Time time_b, Estadio local, GregorianCalendar horario) {
 		Jogo jogo = new Jogo();
 		jogo.setTime_a(time_a);
 		jogo.setTime_b(time_b);

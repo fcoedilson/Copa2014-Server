@@ -11,31 +11,35 @@ import javax.servlet.http.HttpServletResponse;
 
 import net.sf.json.JSONArray;
 
-import com.github.bcfurtado.copaserver.beans.Estadio;
-import com.github.bcfurtado.copaserver.controladores.ControladorEstadios;
+import com.github.bcfurtado.copaserver.beans.Jogo;
+import com.github.bcfurtado.copaserver.controladores.ControladorJogos;
 
-public class ListarEstadios extends HttpServlet {
+
+public class ListarJogos extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+       
+	private ControladorJogos controladorJogos;
 	
-	private ControladorEstadios controladorEstadios;
-	
-	public ListarEstadios() {
-		controladorEstadios = new ControladorEstadios();
-	}
+    public ListarJogos() {
+        super();
+        controladorJogos = new ControladorJogos();
+    }
+
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doPost(request, response);
 	}
 
-
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		List<Estadio> estadios = controladorEstadios.pegarTodosOsEstadios();
-		JSONArray json = JSONArray.fromObject(estadios);
+		List<Jogo> jogos = controladorJogos.pegarTodosOsJogos();
+
+		JSONArray json = JSONArray.fromObject(jogos);
 		response.setContentType("application/json");
-		
+        
 		PrintWriter out = response.getWriter();
-		out.print(json);
-		out.flush();
+        out.print(json);
+        out.flush();
 	}
 
 }

@@ -70,6 +70,17 @@ public class ControladorTimes {
 		return time;
 	}
 	
+	public Time pegarTimePeloNome(String nome){
+		session = PreparaSessao.pegarSessao();
+		Criteria criteria = session.createCriteria(Time.class)
+				.add(Restrictions.eq("nome", nome));
+		
+		Time time = (Time) criteria.uniqueResult();
+		session.close();
+
+		return time;
+	}
+	
 	public List<Time> pegarTodosOsTimes(){
 		return todosOsTimes.pegarTodosOsTimesAtivados();
 	}

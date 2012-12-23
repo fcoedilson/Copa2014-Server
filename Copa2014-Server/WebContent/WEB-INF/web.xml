@@ -89,4 +89,14 @@
     <servlet-name>ListarEstadios</servlet-name>
     <url-pattern>/ListarEstadios</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ListarJogos</display-name>
+    <servlet-name>ListarJogos</servlet-name>
+    <servlet-class>com.github.bcfurtado.copaserver.servlets.ListarJogos</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ListarJogos</servlet-name>
+    <url-pattern>/ListarJogos</url-pattern>
+  </servlet-mapping>
 </web-app>

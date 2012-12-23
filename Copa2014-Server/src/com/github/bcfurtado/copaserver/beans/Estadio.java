@@ -3,16 +3,17 @@ package com.github.bcfurtado.copaserver.beans;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
-
+@Table(name="estadio")
 public class Estadio {
 	@Id
 	@GeneratedValue
 	private Long id;
 	private String nome;
-	private float latitude;
-	private float longitude;
+	private Double latitude;
+	private Double longitude;
 	private boolean ativo;
 
 	public Long getId(){
@@ -27,19 +28,19 @@ public class Estadio {
 		return nome;
 	}
 
-	public void setLatitude(float latitude){
+	public void setLatitude(Double latitude){
 		this.latitude = latitude;
 	}
 
-	public void setLongitude(float longitude){
+	public void setLongitude(Double longitude){
 		this.longitude = longitude;
 	}
 
-	public float getLatitude(){
+	public Double getLatitude(){
 		return latitude;
 	}
 
-	public float getLongitude(){
+	public Double getLongitude(){
 		return longitude;
 	}
 

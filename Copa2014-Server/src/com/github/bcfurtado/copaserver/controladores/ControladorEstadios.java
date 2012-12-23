@@ -20,7 +20,7 @@ public class ControladorEstadios {
 		todosOsEstadios = new TodosOsEstadios();
 	}
 
-	public void cadastrarEstadio(String nome, float latitude, float longitude) {
+	public void cadastrarEstadio(String nome, Double latitude, Double longitude) {
 		Estadio estadio = new Estadio();
 		estadio.setNome(nome);
 		estadio.setLatitude(latitude);
@@ -71,6 +71,16 @@ public class ControladorEstadios {
 		Estadio estadio = (Estadio) criteria.uniqueResult();
 		session.close();
 		
+		return estadio;
+	}
+	
+	public Estadio pegarEstadioPeloNome(String nome) {
+		session = PreparaSessao.pegarSessao();
+		Criteria criteria = session.createCriteria(Estadio.class)
+				.add(Restrictions.eq("nome", nome));
+
+		Estadio estadio = (Estadio) criteria.uniqueResult();
+		session.close();
 		return estadio;
 	}
 

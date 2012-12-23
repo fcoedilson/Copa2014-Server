@@ -1,12 +1,8 @@
 package com.github.bcfurtado.copaserver.beans;
 
-import java.util.HashSet;
-import java.util.Set;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -17,32 +13,38 @@ public class Time {
 	private Long id;
 	private String nome;
 	private boolean ativo;
-	@OneToMany(mappedBy="time")
-	private Set<Usuario> usuarios = new HashSet<Usuario>();
-	
-	
-	public Long getId(){
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public Long getId() {
 		return id;
 	}
-	
-	public void setNome(String nome){
+
+	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
-	public String getNome(){
+
+	public String getNome() {
 		return nome;
 	}
 	
-	public boolean isAtivo(){
-		return ativo;
+
+	public void setAtivo(boolean ativo) {
+		this.ativo = ativo;
 	}
 	
-	public void ativar(){
+	public boolean isAtivo() {
+		return ativo;
+	}
+
+	public void ativar() {
 		this.ativo = true;
 	}
 
-	public void desativar(){
+	public void desativar() {
 		this.ativo = false;
 	}
-	
+
 }

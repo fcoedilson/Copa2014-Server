@@ -1,24 +1,40 @@
 package com.github.bcfurtado.copaserver.beans;
 
-import java.util.Date;
+import java.util.GregorianCalendar;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
-
+@Table(name = "jogo")
 public class Jogo {
 
 	@Id
 	@GeneratedValue
 	private Long id;
+	
+	@ManyToOne
 	private Time time_a;
+	
+	@ManyToOne
 	private Time time_b;
+	
+	@ManyToOne
 	private Estadio local;
-	private Date horario;
+	
+	private GregorianCalendar horario;
 
+	@ManyToOne
+	private Time vencedor;
+	
 	private boolean ativo;
+
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public Long getId(){
 		return id;
@@ -48,11 +64,11 @@ public class Jogo {
 		return local;
 	}
 
-	public void setHorario(Date horario){
+	public void setHorario(GregorianCalendar horario){
 		this.horario = horario;
 	}
 
-	public Date getHorario(){
+	public GregorianCalendar getHorario(){
 		return horario;
 	}
 
@@ -72,5 +88,12 @@ public class Jogo {
 		this.setAtivo(false);
 	}
 
+	public Time getVencedor() {
+		return vencedor;
+	}
 
+	public void setVencedor(Time vencedor) {
+		this.vencedor = vencedor;
+	}
+	
 }

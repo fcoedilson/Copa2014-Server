@@ -1,64 +1,144 @@
 package com.github.bcfurtado.copaserver.util;
 
-import org.hibernate.classic.Session;
+import java.util.GregorianCalendar;
 
-import com.github.bcfurtado.copaserver.beans.Noticia;
-import com.github.bcfurtado.copaserver.beans.Time;
-import com.github.bcfurtado.copaserver.beans.Usuario;
+import com.github.bcfurtado.copaserver.controladores.ControladorEstadios;
+import com.github.bcfurtado.copaserver.controladores.ControladorJogos;
+import com.github.bcfurtado.copaserver.controladores.ControladorNoticias;
+import com.github.bcfurtado.copaserver.controladores.ControladorTimes;
 
 public class InserirDados {
-	public static void povoar(){
-		
-		Session session = PreparaSessao.pegarSessao();
-		
-		session.beginTransaction();
-		
-		Time timeBrasil = new Time();
-		timeBrasil.setNome("Brasil");
-		timeBrasil.ativar();
-		
-		Usuario usuarioTeste1 = new Usuario();
-		usuarioTeste1.setId((long) 1);
-		usuarioTeste1.setEmail("teste1@gmail.com");
-		usuarioTeste1.setTime(timeBrasil);
-		usuarioTeste1.ativar();
-		
-		Noticia noticiaTeste1 = new Noticia();
-		noticiaTeste1.setTitulo("Brasil ser a sede da copa de 2014");
-		noticiaTeste1.setCorpo("A FIFA decidiu que o Brasil irá sediar a copa do mundo de 2014.");
-		noticiaTeste1.ativar();
-		
-		session.save(noticiaTeste1);
-		session.save(timeBrasil);
-		session.save(usuarioTeste1);
+	public static void povoar() {
 
-		session.getTransaction().commit();	
-		session.close();
+		/* Respeitar ordem de chamada dos metodos */
+		cadastrarNoticias();
+		cadastrarTimes();
+		cadastrarEstadios();
+		cadastrarJogos();
+	}
+
+	private static void cadastrarTimes() {
+		ControladorTimes controlador = new ControladorTimes();
+
+		controlador.cadastrarTime("Brasil");
+		controlador.cadastrarTime("Japão");
+		controlador.cadastrarTime("México");
+		controlador.cadastrarTime("Ítalia");
+		controlador.cadastrarTime("Espanha");
+		controlador.cadastrarTime("Uruguai");
+		controlador.cadastrarTime("Taiti");
+		controlador.cadastrarTime("Representante Africano");
+
+	}
+
+	private static void cadastrarNoticias() {
+		ControladorNoticias controlador = new ControladorNoticias();
+
+		controlador.cadastrarNoticias("Brasil sera à sede da Copa de 2014",
+						"A FIFA decidiu que o Brasil irá sediar a Copa do Mundo de 2014.");
+		controlador.cadastrarNoticias("Corinthians Bi-Campeão Mundial!",
+						"Domingo (17/12) o Corinthians foi Bi-Campeão Mundial em cima do Chelsea.");
+	}
+
+	/* Lista dos Estadios
+	 * https://maps.google.com.br/maps/ms?msid=212659362010415557313.0004d17256294632815fb&msa=0&iwloc=A
+	 */
+	private static void cadastrarEstadios() {
+		ControladorEstadios controlador = new ControladorEstadios();
+
+		controlador.cadastrarEstadio("Castelão", -3.807217, -38.522688);
+		controlador.cadastrarEstadio("Mané Garrincha", -15.784104, -47.898376);
+		controlador.cadastrarEstadio("Maracanã", -22.912468, -43.226757);
+		controlador.cadastrarEstadio("Estádio Fonte Nova", -12.978644, -38.504044);
+		controlador.cadastrarEstadio("Mineirão", -19.866093, -43.971390);
+		/*
+		 * Coordenadas da Arena Pernambuco indefinida. Coordenadas de Pernambuco utilizadas.
+		 */
+		controlador
+				.cadastrarEstadio("Arena Pernambuco", -12.382928, -41.396484);
+
+	}
+
+	private static void cadastrarJogos() {
+		ControladorJogos controladorJogos = new ControladorJogos();
+		ControladorTimes controladorTimes = new ControladorTimes();
+		ControladorEstadios controladorEstadios = new ControladorEstadios();
+
+		/* Grupo A */
+		controladorJogos.cadastrarJogo(
+				controladorTimes.pegarTimePeloNome("Brasil"),
+				controladorTimes.pegarTimePeloNome("Japão"),
+				controladorEstadios.pegarEstadioPeloNome("Mané Garrincha"),
+				new GregorianCalendar(2013, 6, 15, 16, 00));
+
+		controladorJogos.cadastrarJogo(
+				controladorTimes.pegarTimePeloNome("México"),
+				controladorTimes.pegarTimePeloNome("Ítalia"),
+				controladorEstadios.pegarEstadioPeloNome("Maracanã"),
+				new GregorianCalendar(2013, 6, 16, 16, 00));
+
+		controladorJogos.cadastrarJogo(
+				controladorTimes.pegarTimePeloNome("Brasil"),
+				controladorTimes.pegarTimePeloNome("México"),
+				controladorEstadios.pegarEstadioPeloNome("Castelão"),
+				new GregorianCalendar(2013, 6, 19, 19, 00));
+
+		controladorJogos.cadastrarJogo(
+				controladorTimes.pegarTimePeloNome("Ítalia"),
+				controladorTimes.pegarTimePeloNome("Japão"),
+				controladorEstadios.pegarEstadioPeloNome("Arena Pernambuco"),
+				new GregorianCalendar(2013, 6, 19, 19, 00));
+
+		controladorJogos.cadastrarJogo(
+				controladorTimes.pegarTimePeloNome("Japão"),
+				controladorTimes.pegarTimePeloNome("México"),
+				controladorEstadios.pegarEstadioPeloNome("Mineirão"),
+				new GregorianCalendar(2013, 6, 22, 16, 00));
+
+		controladorJogos.cadastrarJogo(
+				controladorTimes.pegarTimePeloNome("Itália"),
+				controladorTimes.pegarTimePeloNome("Brasil"),
+				controladorEstadios.pegarEstadioPeloNome("Estádio Fonte Nova"),
+				new GregorianCalendar(2013, 6, 22, 16, 00));
+
+		/* Grupo B */
+		controladorJogos.cadastrarJogo(
+				controladorTimes.pegarTimePeloNome("Espanha"),
+				controladorTimes.pegarTimePeloNome("Uruguai"),
+				controladorEstadios.pegarEstadioPeloNome("Arena Pernambuco"),
+				new GregorianCalendar(2013, 6, 16, 19, 00));
 		
-		session = PreparaSessao.pegarSessao();
+		controladorJogos.cadastrarJogo(
+				controladorTimes.pegarTimePeloNome("Taiti"),
+				controladorTimes.pegarTimePeloNome("Representante Africano"),
+				controladorEstadios.pegarEstadioPeloNome("Mineirão"),
+				new  GregorianCalendar(2013, 6, 17, 16, 00));
+
+		controladorJogos.cadastrarJogo(
+				controladorTimes.pegarTimePeloNome("Espanha"),
+				controladorTimes.pegarTimePeloNome("Taiti"),
+				controladorEstadios.pegarEstadioPeloNome("Maracanã"),
+				new  GregorianCalendar(2013, 6, 20, 16, 00));
 		
-		session.beginTransaction();
+		controladorJogos.cadastrarJogo(
+				controladorTimes.pegarTimePeloNome("Representante Africano"),
+				controladorTimes.pegarTimePeloNome("Uruguai"),
+				controladorEstadios.pegarEstadioPeloNome("Estádio Fonte Nova"),
+				new  GregorianCalendar(2013, 6, 20, 16, 00));
 		
-		Time timeArgentina = new Time();
-		timeArgentina.setNome("Argentina");
-		timeArgentina.ativar();
+		controladorJogos.cadastrarJogo(
+				controladorTimes.pegarTimePeloNome("Representante Africano"),
+				controladorTimes.pegarTimePeloNome("Espanha"),
+				controladorEstadios.pegarEstadioPeloNome("Castelão"),
+				new  GregorianCalendar(2013, 6, 20, 16, 00));
+
+		controladorJogos.cadastrarJogo(
+				controladorTimes.pegarTimePeloNome("Uruguai"),
+				controladorTimes.pegarTimePeloNome("Taiti"),
+				controladorEstadios.pegarEstadioPeloNome("Arena Pernambuco"),
+				new  GregorianCalendar(2013, 6, 20, 16, 00));
 		
-		Usuario usuarioTeste2 = new Usuario();
-		usuarioTeste2.setId((long) 2);
-		usuarioTeste2.setEmail("teste2@gmail.com");
-		usuarioTeste2.setTime(timeArgentina);
-		usuarioTeste2.ativar();
-		
-		Noticia noticiaTeste2 = new Noticia();
-		noticiaTeste2.setTitulo("Corinthians Bi-Campeão Mundial!");
-		noticiaTeste2.setCorpo("Domingo (17/12) o Corinthians foi Bi-Campeão Mundial em cima do Chelsea.");
-		noticiaTeste2.ativar();
-		
-		session.save(noticiaTeste2);
-		session.save(timeArgentina);
-		session.save(usuarioTeste2);
-		
-		session.getTransaction().commit();	
-		session.close();
+		/* Semifinais e Final */
+		// ...
 	}
 }
