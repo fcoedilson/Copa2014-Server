@@ -99,4 +99,14 @@
     <servlet-name>ListarJogos</servlet-name>
     <url-pattern>/ListarJogos</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ListarTodosOsJogosDeHoje</display-name>
+    <servlet-name>ListarTodosOsJogosDeHoje</servlet-name>
+    <servlet-class>com.github.bcfurtado.copaserver.servlets.ListarTodosOsJogosDeHoje</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ListarTodosOsJogosDeHoje</servlet-name>
+    <url-pattern>/ListarTodosOsJogosDeHoje</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -76,6 +76,10 @@ public class ControladorJogos {
 		session.close();
 		return jogo;
 	}
+	
+	public List<Jogo> pegarTodosOsJogosDeHoje(){
+		return todosOsJogos.pegarTodosOsJogosDeHoje();
+	}
 
 	public List<Jogo> pegarTodosOsJogos(){
 		return todosOsJogos.pegarTodosOsJogosAtivados();
