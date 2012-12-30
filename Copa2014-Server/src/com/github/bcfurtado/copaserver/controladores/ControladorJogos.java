@@ -80,6 +80,10 @@ public class ControladorJogos {
 	public List<Jogo> pegarTodosOsJogosDeHoje(){
 		return todosOsJogos.pegarTodosOsJogosDeHoje();
 	}
+	
+	public List<Jogo> pegarTodosOsProximosJogos(){
+		return todosOsJogos.pegarTodosOsProximosJogos();
+	}
 
 	public List<Jogo> pegarTodosOsJogos(){
 		return todosOsJogos.pegarTodosOsJogosAtivados();
