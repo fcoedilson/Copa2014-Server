@@ -20,7 +20,11 @@ public class Noticia {
 	public Long getId(){
 		return id;
 	}
-
+	
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
 	public void setTitulo(String titulo){
 		this.titulo = titulo;
 	}

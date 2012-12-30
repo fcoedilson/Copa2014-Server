@@ -8,11 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.sf.json.JSONObject;
-
 import com.github.bcfurtado.copaserver.beans.Time;
 import com.github.bcfurtado.copaserver.controladores.ControladorTimes;
-
+import com.google.gson.Gson;
 
 public class PegarTime extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -33,7 +31,8 @@ public class PegarTime extends HttpServlet {
 		Time time = controladorTimes.pegarTimePeloId(id_time);
 		
 		if ( id_time != null && time != null) {
-			JSONObject json = JSONObject.fromObject(time);
+			Gson gson = new Gson();
+			String json = gson.toJson(time);
 			
 			response.setContentType("application/json");	        
 			PrintWriter out = response.getWriter();

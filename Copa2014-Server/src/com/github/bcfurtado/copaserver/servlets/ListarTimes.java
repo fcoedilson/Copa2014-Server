@@ -9,9 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.sf.json.JSONArray;
 import com.github.bcfurtado.copaserver.beans.Time;
 import com.github.bcfurtado.copaserver.controladores.ControladorTimes;
+import com.google.gson.Gson;
 
 public class ListarTimes extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -30,9 +30,11 @@ public class ListarTimes extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Time> times = controladorTimes.pegarTodosOsTimes();
 			
-		JSONArray json = JSONArray.fromObject(times);
 		response.setContentType("application/json");
         
+		Gson gson = new Gson();
+		String json = gson.toJson(times);
+		
 		PrintWriter out = response.getWriter();
         out.print(json);
         out.flush();

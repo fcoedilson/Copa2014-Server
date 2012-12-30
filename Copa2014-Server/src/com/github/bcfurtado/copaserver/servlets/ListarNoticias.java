@@ -9,10 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.sf.json.JSONArray;
-
 import com.github.bcfurtado.copaserver.beans.Noticia;
 import com.github.bcfurtado.copaserver.controladores.ControladorNoticias;
+import com.google.gson.Gson;
 
 public class ListarNoticias extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -32,8 +31,10 @@ public class ListarNoticias extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Noticia> noticias = controladorNoticias.pegarTodasNoticias();
 		
-		JSONArray json = JSONArray.fromObject(noticias);
 		response.setContentType("application/json");
+		
+		Gson gson = new Gson();
+		String json = gson.toJson(noticias);
         
 		PrintWriter out = response.getWriter();
         out.print(json);

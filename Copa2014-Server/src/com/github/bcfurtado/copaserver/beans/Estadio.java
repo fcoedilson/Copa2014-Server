@@ -16,6 +16,10 @@ public class Estadio {
 	private Double longitude;
 	private boolean ativo;
 
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
 	public Long getId(){
 		return id;
 	}

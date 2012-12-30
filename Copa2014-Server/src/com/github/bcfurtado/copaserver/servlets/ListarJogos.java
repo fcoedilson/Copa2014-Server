@@ -9,10 +9,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.sf.json.JSONArray;
-
 import com.github.bcfurtado.copaserver.beans.Jogo;
 import com.github.bcfurtado.copaserver.controladores.ControladorJogos;
+import com.google.gson.Gson;
 
 
 public class ListarJogos extends HttpServlet {
@@ -33,10 +32,12 @@ public class ListarJogos extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Jogo> jogos = controladorJogos.pegarTodosOsJogos();
-
-		JSONArray json = JSONArray.fromObject(jogos);
+		
 		response.setContentType("application/json");
         
+		Gson gson = new Gson();
+		String json = gson.toJson(jogos);
+		
 		PrintWriter out = response.getWriter();
         out.print(json);
         out.flush();

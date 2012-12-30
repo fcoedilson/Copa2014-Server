@@ -8,10 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.sf.json.JSONObject;
-
 import com.github.bcfurtado.copaserver.beans.Noticia;
 import com.github.bcfurtado.copaserver.controladores.ControladorNoticias;
+import com.google.gson.Gson;
 
 public class PegarNoticia extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -31,7 +30,9 @@ public class PegarNoticia extends HttpServlet {
 		Noticia noticia = controladorNoticias.pegarNoticiaPeloId(id_noticia);
 		
 		if ( id_noticia != null && noticia != null) {
-			JSONObject json = JSONObject.fromObject(noticia);
+			
+			Gson gson = new Gson();
+			String json = gson.toJson(noticia);
 			
 			response.setContentType("application/json");	        
 			PrintWriter out = response.getWriter();
