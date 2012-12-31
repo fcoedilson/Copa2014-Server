@@ -18,7 +18,6 @@ public class ControladorUsuarios {
 	private TodosOsUsuarios todosOsUsuarios;
 	
 	public ControladorUsuarios() {
-		session = PreparaSessao.pegarSessao();
 		todosOsUsuarios = new TodosOsUsuarios();
 	}
 
@@ -30,19 +29,22 @@ public class ControladorUsuarios {
 		usuario.setEmail(email);
 		usuario.ativar();
 		
+		boolean resposta = false;
+		
 		session = PreparaSessao.pegarSessao();
 		try {
 			session.beginTransaction();
 			session.save(usuario);
 			session.getTransaction().commit();
-			return true;
+			resposta = true;
 		} catch (HibernateException e) {
-			return false;
+			resposta = false;
 		} catch (Exception e) {
-			return false;
+			resposta = false;
 		} finally {
 			session.close();
 		}
+		return resposta;
 	}
 
 	public void atualizarUsuario(Usuario usuario) {

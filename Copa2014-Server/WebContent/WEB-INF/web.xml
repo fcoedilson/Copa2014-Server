@@ -119,4 +119,14 @@
     <servlet-name>ListarTodosOsProximosJogos</servlet-name>
     <url-pattern>/ListarTodosOsProximosJogos</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CadastrarPost</display-name>
+    <servlet-name>CadastrarPost</servlet-name>
+    <servlet-class>com.github.bcfurtado.copaserver.servlets.CadastrarPost</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CadastrarPost</servlet-name>
+    <url-pattern>/CadastrarPost</url-pattern>
+  </servlet-mapping>
 </web-app>

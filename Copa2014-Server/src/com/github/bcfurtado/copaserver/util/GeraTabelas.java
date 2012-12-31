@@ -11,6 +11,7 @@ import org.hibernate.tool.hbm2ddl.SchemaExport;
 import com.github.bcfurtado.copaserver.beans.Estadio;
 import com.github.bcfurtado.copaserver.beans.Jogo;
 import com.github.bcfurtado.copaserver.beans.Noticia;
+import com.github.bcfurtado.copaserver.beans.Post;
 import com.github.bcfurtado.copaserver.beans.Time;
 import com.github.bcfurtado.copaserver.beans.Usuario;
 
@@ -58,6 +59,7 @@ public class GeraTabelas {
 		classes.add(Estadio.class);
 		classes.add(Jogo.class);
 		classes.add(Noticia.class);
+		classes.add(Post.class);
 
 		return classes;
 	}
