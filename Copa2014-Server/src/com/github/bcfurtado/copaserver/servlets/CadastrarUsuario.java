@@ -12,9 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 import net.sf.json.JSONObject;
 
 import com.github.bcfurtado.copaserver.beans.Time;
+import com.github.bcfurtado.copaserver.beans.Usuario;
 
 import com.github.bcfurtado.copaserver.controladores.ControladorTimes;
 import com.github.bcfurtado.copaserver.controladores.ControladorUsuarios;
+import com.google.gson.JsonObject;
 
 public class CadastrarUsuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -42,30 +44,39 @@ public class CadastrarUsuario extends HttpServlet {
 			cadastrar = false;
 		}
 		
+		JSONObject json = new JSONObject();
+		
 		if (cadastrar) {
 			Long id_facebook_long = Long.parseLong(id_facebook);
 			Long id_time_long = Long.parseLong(id_time);
 			Time time = controladorTimes.pegarTimePeloId(id_time_long);
 
-			boolean sucesso = controladorUsuarios.cadastrarUsuario(id_facebook_long, time,email);
-
-			HashMap<String,String> hm = new HashMap<String,String>();
-			if (sucesso){
-				hm.put("mensagem","Usuario cadastrado com Sucesso.");
-				hm.put("status", "1");	//true
+			Usuario usuario = controladorUsuarios.pegarUsuarioPeloId(id_facebook_long);
+			
+			if (usuario != null){
+				json.put("mensagem","Usuario já cadastrado.");
+				json.put("status", "2");	//ja cadastrado
 			} else {
-				hm.put("mensagem","Não foi possivel cadastar o usuário.");
-				hm.put("status", "0");	//false
+				boolean sucesso = controladorUsuarios.cadastrarUsuario(id_facebook_long, time,email);
+
+				if ( sucesso ){
+					json.put("mensagem","Usuario cadastrado com Sucesso.");
+					json.put("status", "1");	//true
+				} else {
+					json.put("mensagem","Não foi possivel cadastar o usuário.");
+					json.put("status", "0");	//false
+				}
 			}
 			
 			PrintWriter out = response.getWriter();
-			JSONObject json = JSONObject.fromObject(hm);
 			response.setContentType("application/json");
             out.print(json);
             out.flush();
             
 		} else {
 			PrintWriter out = response.getWriter();
+			json.put("mensagem", "Campos de cadastro invalidos.");
+			json.put("status", "0");	//false
             out.print("Não foi possivel realizar o cadastro.");
             out.flush();
 		}
