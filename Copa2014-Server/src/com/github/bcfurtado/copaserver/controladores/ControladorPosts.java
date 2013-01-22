@@ -4,6 +4,7 @@ import org.hibernate.Session;
 
 import com.github.bcfurtado.copaserver.beans.Jogo;
 import com.github.bcfurtado.copaserver.beans.Post;
+import com.github.bcfurtado.copaserver.beans.Time;
 import com.github.bcfurtado.copaserver.beans.Usuario;
 import com.github.bcfurtado.copaserver.repositorios.TodosOsPosts;
 import com.github.bcfurtado.copaserver.util.PreparaSessao;
@@ -17,10 +18,11 @@ public class ControladorPosts {
 		todosOsPosts = new TodosOsPosts();
 	}
 	
-	public boolean cadastrarPost( String idPostFacebook, Jogo jogo, Usuario usuario ){
+	public boolean cadastrarPost( String idPostFacebook, Time time, Jogo jogo, Usuario usuario ){
 		
 		Post post = new Post();
 		post.setIdPostFacebook(idPostFacebook);
+		post.setTime(time);
 		post.setJogo(jogo);
 		post.setUsuario(usuario);
 		post.setAtivar(true);

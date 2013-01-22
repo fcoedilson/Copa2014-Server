@@ -12,9 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 import net.sf.json.JSONObject;
 
 import com.github.bcfurtado.copaserver.beans.Jogo;
+import com.github.bcfurtado.copaserver.beans.Time;
 import com.github.bcfurtado.copaserver.beans.Usuario;
 import com.github.bcfurtado.copaserver.controladores.ControladorJogos;
 import com.github.bcfurtado.copaserver.controladores.ControladorPosts;
+import com.github.bcfurtado.copaserver.controladores.ControladorTimes;
 import com.github.bcfurtado.copaserver.controladores.ControladorUsuarios;
 
 public class CadastrarPost extends HttpServlet {
@@ -23,11 +25,13 @@ public class CadastrarPost extends HttpServlet {
 	private ControladorJogos controladorJogos;
 	private ControladorUsuarios controladorUsuarios;
 	private ControladorPosts controladorPosts;
+	private ControladorTimes controladorTimes;
 	
 	public CadastrarPost() {
 		controladorJogos = new ControladorJogos();
 		controladorUsuarios = new ControladorUsuarios();
 		controladorPosts = new ControladorPosts();
+		controladorTimes = new ControladorTimes();
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -36,25 +40,28 @@ public class CadastrarPost extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String id_post_facebook = request.getParameter("id_post_facebook");
+		String id_time = request.getParameter("id_time");
 		String id_jogo = request.getParameter("id_jogo");
 		String id_usuario = request.getParameter("id_usuario");
 
 		boolean cadastrar = true;
-		if (id_post_facebook == null || id_jogo == null || id_usuario == null
-				|| id_post_facebook.isEmpty() || id_jogo.isEmpty() || id_usuario.isEmpty()) {
+		if (id_post_facebook == null || id_jogo == null || id_usuario == null || id_time == null
+				|| id_post_facebook.isEmpty() || id_jogo.isEmpty() || id_usuario.isEmpty() || id_time.isEmpty()) {
 			cadastrar = false;
 		}
 
 		boolean sucesso = false;
 		if (cadastrar) {
 			String idPostFacebook = id_post_facebook;
+			Long idTime = Long.parseLong(id_time);
 			Long idJogo = Long.parseLong(id_jogo);
 			Long idUsuario = Long.parseLong(id_usuario);
 
+			Time time = controladorTimes.pegarTimePeloId(idTime);
 			Jogo jogo = controladorJogos.pegarJogoPeloId(idJogo);
 			Usuario usuario = controladorUsuarios.pegarUsuarioPeloId(idUsuario);
-			if ( jogo != null && usuario != null ) {
-				sucesso = controladorPosts.cadastrarPost(idPostFacebook, jogo, usuario);
+			if ( time != null && jogo != null && usuario != null ) {
+				sucesso = controladorPosts.cadastrarPost(idPostFacebook, time, jogo, usuario);
 			} else {
 				sucesso = false;
 			}
