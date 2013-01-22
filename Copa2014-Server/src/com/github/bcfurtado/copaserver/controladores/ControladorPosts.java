@@ -1,6 +1,11 @@
 package com.github.bcfurtado.copaserver.controladores;
 
+import java.util.List;
+
+import org.hibernate.Criteria;
 import org.hibernate.Session;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 
 import com.github.bcfurtado.copaserver.beans.Jogo;
 import com.github.bcfurtado.copaserver.beans.Post;
@@ -41,5 +46,18 @@ public class ControladorPosts {
 			session.close();
 		}
 		return resposta;
+	}
+
+	public List<Post> pegarTodosOsPostsDoJogo( Jogo jogo ) {
+		session = PreparaSessao.pegarSessao();
+		
+		Criteria criteria = session.createCriteria(Post.class)
+				.add(Restrictions.eq("jogo", jogo))
+				.addOrder(Order.desc("id"));
+		
+		List<Post> posts = criteria.list();
+		session.close();
+		
+		return posts;
 	}
 }

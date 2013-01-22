@@ -129,4 +129,14 @@
     <servlet-name>CadastrarPost</servlet-name>
     <url-pattern>/CadastrarPost</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ListarTodosOsPostsDoJogo</display-name>
+    <servlet-name>ListarTodosOsPostsDoJogo</servlet-name>
+    <servlet-class>com.github.bcfurtado.copaserver.servlets.ListarTodosOsPostsDoJogo</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ListarTodosOsPostsDoJogo</servlet-name>
+    <url-pattern>/ListarTodosOsPostsDoJogo</url-pattern>
+  </servlet-mapping>
 </web-app>
