@@ -19,6 +19,9 @@ public class Post {
 	private String idPostFacebook;
 
 	@ManyToOne
+	private Time time;
+	
+	@ManyToOne
 	private Jogo jogo;
 
 	@ManyToOne
@@ -37,9 +40,17 @@ public class Post {
 	public String getIdPostFacebook() {
 		return idPostFacebook;
 	}
-
+	
 	public void setIdPostFacebook(String idPostFacebook) {
 		this.idPostFacebook = idPostFacebook;
+	}
+	
+	public Time getTime() {
+		return time;
+	}
+
+	public void setTime(Time time) {
+		this.time = time;
 	}
 
 	public Jogo getJogo() {
