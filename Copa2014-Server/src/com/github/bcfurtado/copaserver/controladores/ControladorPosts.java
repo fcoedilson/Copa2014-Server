@@ -23,7 +23,7 @@ public class ControladorPosts {
 		todosOsPosts = new TodosOsPosts();
 	}
 	
-	public boolean cadastrarPost( String idPostFacebook, Time time, Jogo jogo, Usuario usuario ){
+	public boolean cadastrarPost( String idPostFacebook, Time time, Jogo jogo, Usuario usuario, String local ){
 		
 		Post post = new Post();
 		post.setIdPostFacebook(idPostFacebook);
@@ -31,6 +31,7 @@ public class ControladorPosts {
 		post.setJogo(jogo);
 		post.setUsuario(usuario);
 		post.setAtivar(true);
+		post.setLocal(local);
 		
 		boolean resposta = false;
 		

@@ -43,10 +43,11 @@ public class CadastrarPost extends HttpServlet {
 		String id_time = request.getParameter("id_time");
 		String id_jogo = request.getParameter("id_jogo");
 		String id_usuario = request.getParameter("id_usuario");
+		String local = request.getParameter("local");
 
 		boolean cadastrar = true;
-		if (id_post_facebook == null || id_jogo == null || id_usuario == null || id_time == null
-				|| id_post_facebook.isEmpty() || id_jogo.isEmpty() || id_usuario.isEmpty() || id_time.isEmpty()) {
+		if (id_post_facebook == null || id_jogo == null || id_usuario == null || id_time == null || local == null
+				|| id_post_facebook.isEmpty() || id_jogo.isEmpty() || id_usuario.isEmpty() || id_time.isEmpty() || local.isEmpty() ) {
 			cadastrar = false;
 		}
 
@@ -61,7 +62,7 @@ public class CadastrarPost extends HttpServlet {
 			Jogo jogo = controladorJogos.pegarJogoPeloId(idJogo);
 			Usuario usuario = controladorUsuarios.pegarUsuarioPeloId(idUsuario);
 			if ( time != null && jogo != null && usuario != null ) {
-				sucesso = controladorPosts.cadastrarPost(idPostFacebook, time, jogo, usuario);
+				sucesso = controladorPosts.cadastrarPost(idPostFacebook, time, jogo, usuario, local);
 			} else {
 				sucesso = false;
 			}

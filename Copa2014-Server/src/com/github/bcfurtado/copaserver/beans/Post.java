@@ -26,6 +26,8 @@ public class Post {
 
 	@ManyToOne
 	private Usuario usuario;
+	
+	private String local;
 
 	private boolean ativar;
 
@@ -76,5 +78,15 @@ public class Post {
 	public void setAtivar(boolean ativar) {
 		this.ativar = ativar;
 	}
+
+	public String getLocal() {
+		return local;
+	}
+
+	public void setLocal(String local) {
+		this.local = local;
+	}
+	
+	
 
 }
