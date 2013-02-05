@@ -8,6 +8,7 @@ import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.classic.Session;
 import org.hibernate.tool.hbm2ddl.SchemaExport;
 
+import com.github.bcfurtado.copaserver.beans.Badge;
 import com.github.bcfurtado.copaserver.beans.Estadio;
 import com.github.bcfurtado.copaserver.beans.Jogo;
 import com.github.bcfurtado.copaserver.beans.Noticia;
@@ -60,6 +61,7 @@ public class GeraTabelas {
 		classes.add(Jogo.class);
 		classes.add(Noticia.class);
 		classes.add(Post.class);
+		classes.add(Badge.class);
 
 		return classes;
 	}

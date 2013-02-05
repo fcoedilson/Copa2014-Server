@@ -1,12 +1,18 @@
 package com.github.bcfurtado.copaserver.beans;
 
+import java.util.ArrayList;
+
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-
 
 @Entity
 @Table(name="usuario")
@@ -22,6 +28,20 @@ public class Usuario {
 	private String email;
 	private boolean ativo;
 	
+	@ManyToMany (fetch = FetchType.LAZY)
+	@JoinTable(name="badge_usuario", 
+	joinColumns = @JoinColumn(name="usuario_id_facebook"),
+	inverseJoinColumns = @JoinColumn(name="badge_id"))
+	private List<Badge> badges = new ArrayList<Badge>(0);
+		
+	public List<Badge> getBadges() {
+		return badges;
+	}
+
+	public void setBadges(List<Badge> badges) {
+		this.badges = badges;
+	}
+
 	public Long getId(){
 		return id_facebook;
 	}
