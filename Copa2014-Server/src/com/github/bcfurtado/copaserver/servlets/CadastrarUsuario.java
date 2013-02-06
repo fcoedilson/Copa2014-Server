@@ -2,8 +2,6 @@ package com.github.bcfurtado.copaserver.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.HashMap;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -16,7 +14,6 @@ import com.github.bcfurtado.copaserver.beans.Usuario;
 
 import com.github.bcfurtado.copaserver.controladores.ControladorTimes;
 import com.github.bcfurtado.copaserver.controladores.ControladorUsuarios;
-import com.google.gson.JsonObject;
 
 public class CadastrarUsuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;

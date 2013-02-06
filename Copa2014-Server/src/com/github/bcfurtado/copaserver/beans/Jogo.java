@@ -32,18 +32,11 @@ public class Jogo {
 	@ManyToOne
 	private Time vencedor;
 	
-	private List<String> marcadores = new ArrayList<String>();
+	private ArrayList<String> goleadores_time_a = new ArrayList<String>();
+	
+	private ArrayList<String> goleadores_time_b = new ArrayList<String>();
 	
 	private boolean ativo;
-
-	
-	public List<String> getMarcadores() {
-		return marcadores;
-	}
-
-	public void setMarcadores(List<String> marcadores) {
-		this.marcadores = marcadores;
-	}
 
 	public void setId(Long id) {
 		this.id = id;
@@ -107,6 +100,22 @@ public class Jogo {
 
 	public void setVencedor(Time vencedor) {
 		this.vencedor = vencedor;
+	}
+
+	public List<String> getGoleadores_time_b() {
+		return goleadores_time_b;
+	}
+
+	public void setGoleadores_time_b(ArrayList<String> goleadores_time_b) {
+		this.goleadores_time_b = goleadores_time_b;
+	}
+
+	public List<String> getGoleadores_time_a() {
+		return goleadores_time_a;
+	}
+
+	public void setGoleadores_time_a(ArrayList<String> goleadores_time_a) {
+		this.goleadores_time_a = goleadores_time_a;
 	}
 	
 }

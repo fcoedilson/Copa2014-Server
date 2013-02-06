@@ -27,14 +27,14 @@ public class Usuario {
 	@Column(unique=true)
 	private String email;
 	private boolean ativo;
-	private Integer vitoriasConsecultivas;
-	private Integer derrotasConsecultivas;
+	private Integer vitoriasConsecutivas;
+	private Integer derrotasConsecutivas;
 	
 	@ManyToMany (fetch = FetchType.LAZY)
 	@JoinTable(name="badge_usuario", 
 	joinColumns = @JoinColumn(name="usuario_id_facebook"),
 	inverseJoinColumns = @JoinColumn(name="badge_id"))
-	private List<Badge> badges = new ArrayList<Badge>(0);
+	private List<Badge> badges = new ArrayList<Badge>();
 		
 	public List<Badge> getBadges() {
 		return badges;
@@ -46,20 +46,20 @@ public class Usuario {
 
 	
 	
-	public Integer getVitoriasConsecultivas() {
-		return vitoriasConsecultivas;
+	public Integer getVitoriasConsecutivas() {
+		return vitoriasConsecutivas;
 	}
 
-	public void setVitoriasConsecultivas(Integer vitoriasConsecultivas) {
-		this.vitoriasConsecultivas = vitoriasConsecultivas;
+	public void setVitoriasConsecutivas(Integer vitoriasConsecutivas) {
+		this.vitoriasConsecutivas = vitoriasConsecutivas;
 	}
 
-	public Integer getDerrotasConsecultivas() {
-		return derrotasConsecultivas;
+	public Integer getDerrotasConsecutivas() {
+		return derrotasConsecutivas;
 	}
 
-	public void setDerrotasConsecultivas(Integer derrotasConsecultivas) {
-		this.derrotasConsecultivas = derrotasConsecultivas;
+	public void setDerrotasConsecutivas(Integer derrotasConsecutivas) {
+		this.derrotasConsecutivas = derrotasConsecutivas;
 	}
 
 	public Long getId(){

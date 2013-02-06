@@ -139,4 +139,34 @@
     <servlet-name>ListarTodosOsPostsDoJogo</servlet-name>
     <url-pattern>/ListarTodosOsPostsDoJogo</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ListarBadges</display-name>
+    <servlet-name>ListarBadges</servlet-name>
+    <servlet-class>com.github.bcfurtado.copaserver.servlets.ListarBadges</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ListarBadges</servlet-name>
+    <url-pattern>/ListarBadges</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>PegarBadges</display-name>
+    <servlet-name>PegarBadges</servlet-name>
+    <servlet-class>com.github.bcfurtado.copaserver.servlets.PegarBadges</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PegarBadges</servlet-name>
+    <url-pattern>/PegarBadges</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>PegarBadgesPeloIdDoUsuario</display-name>
+    <servlet-name>PegarBadgesPeloIdDoUsuario</servlet-name>
+    <servlet-class>com.github.bcfurtado.copaserver.servlets.PegarBadgesPeloIdDoUsuario</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PegarBadgesPeloIdDoUsuario</servlet-name>
+    <url-pattern>/PegarBadgesPeloIdDoUsuario</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -57,10 +57,10 @@ public class ControladorBadges {
 		badge.setTipo("Resultado");
 		badge.setData(jogo.getHorario());
 		if(u.getTime().equals(vencedor)){
-			if(u.getVitoriasConsecultivas()==5){
+			if(u.getVitoriasConsecutivas()==5){
 				badge.setDescricao("Pé Ultra Quente!");
 			}
-			else if(u.getVitoriasConsecultivas()==3){
+			else if(u.getVitoriasConsecutivas()==3){
 				badge.setDescricao("Pé Quente!");
 			}
 			u.adicionarBadge(badge);
@@ -68,10 +68,10 @@ public class ControladorBadges {
 			u.adicionarBadge(badge);
 		}
 		else{
-			if(u.getDerrotasConsecultivas()==5){
+			if(u.getDerrotasConsecutivas()==5){
 				badge.setDescricao("Pé Gelado!");
 			}
-			else if(u.getDerrotasConsecultivas()==3){
+			else if(u.getDerrotasConsecutivas()==3){
 				badge.setDescricao("Pé Frio!");
 			}
 			u.adicionarBadge(badge);
@@ -92,11 +92,16 @@ public class ControladorBadges {
 		badge.setTipo("Gol");
 		badge.setData(jogo.getHorario());
 
-		for(String m : jogo.getMarcadores()){
+		for(String m : jogo.getGoleadores_time_a()){
 			badge.setDescricao("Eu vi o gol do " + m + " no jogo " + vencedor.getNome() + " contra " + derrotado.getNome());
 			u.adicionarBadge(badge);
 		}
-			
+		
+		for(String m : jogo.getGoleadores_time_b()){
+			badge.setDescricao("Eu vi o gol do " + m + " no jogo " + vencedor.getNome() + " contra " + derrotado.getNome());
+			u.adicionarBadge(badge);
+		}
+		
 		session = PreparaSessao.pegarSessao();
 		session.beginTransaction();
 		session.update(u);

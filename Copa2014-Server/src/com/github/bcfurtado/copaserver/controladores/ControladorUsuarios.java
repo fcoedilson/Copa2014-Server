@@ -7,6 +7,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.classic.Session;
 import org.hibernate.criterion.Restrictions;
 
+import com.github.bcfurtado.copaserver.beans.Badge;
 import com.github.bcfurtado.copaserver.beans.Time;
 import com.github.bcfurtado.copaserver.beans.Usuario;
 import com.github.bcfurtado.copaserver.repositorios.TodosOsUsuarios;
@@ -85,7 +86,7 @@ public class ControladorUsuarios {
 		session.close();
 		return usuario;
 	}
-
+	
 	public List<Usuario> pegarTodosOsUsuarios() {
 		return todosOsUsuarios.pegarTodosOsUsuarios();
 	}
@@ -110,4 +111,11 @@ public class ControladorUsuarios {
 		}
 	}
 
+	/*Precisa ser Implementado*/
+	public List<Badge> pegarBadges(Long id_facebook) {
+		List<Badge> badges = null;
+		
+		return badges;
+	}
+	
 }
