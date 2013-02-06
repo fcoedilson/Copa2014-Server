@@ -27,6 +27,8 @@ public class Usuario {
 	@Column(unique=true)
 	private String email;
 	private boolean ativo;
+	private Integer vitoriasConsecultivas;
+	private Integer derrotasConsecultivas;
 	
 	@ManyToMany (fetch = FetchType.LAZY)
 	@JoinTable(name="badge_usuario", 
@@ -40,6 +42,24 @@ public class Usuario {
 
 	public void setBadges(List<Badge> badges) {
 		this.badges = badges;
+	}
+
+	
+	
+	public Integer getVitoriasConsecultivas() {
+		return vitoriasConsecultivas;
+	}
+
+	public void setVitoriasConsecultivas(Integer vitoriasConsecultivas) {
+		this.vitoriasConsecultivas = vitoriasConsecultivas;
+	}
+
+	public Integer getDerrotasConsecultivas() {
+		return derrotasConsecultivas;
+	}
+
+	public void setDerrotasConsecultivas(Integer derrotasConsecultivas) {
+		this.derrotasConsecultivas = derrotasConsecultivas;
 	}
 
 	public Long getId(){
@@ -76,6 +96,10 @@ public class Usuario {
 	
 	public void desativar(){
 		this.ativo = false;
+	}
+	
+	public void adicionarBadge(Badge badge){
+		badges.add(badge);
 	}
 	
 }

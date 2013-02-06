@@ -1,6 +1,8 @@
 package com.github.bcfurtado.copaserver.beans;
 
+import java.util.ArrayList;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -30,7 +32,18 @@ public class Jogo {
 	@ManyToOne
 	private Time vencedor;
 	
+	private List<String> marcadores = new ArrayList<String>();
+	
 	private boolean ativo;
+
+	
+	public List<String> getMarcadores() {
+		return marcadores;
+	}
+
+	public void setMarcadores(List<String> marcadores) {
+		this.marcadores = marcadores;
+	}
 
 	public void setId(Long id) {
 		this.id = id;

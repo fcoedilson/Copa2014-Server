@@ -2,6 +2,7 @@ package com.github.bcfurtado.copaserver.beans;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -23,7 +24,7 @@ public class Badge {
 	@GeneratedValue
 	private Long id;
 	private String tipo;
-	private Date data;
+	private GregorianCalendar data;
 	private String descricao;
 	
 	@ManyToMany (cascade={CascadeType.MERGE}, fetch = FetchType.LAZY)
@@ -68,12 +69,12 @@ public class Badge {
 		this.tipo = tipo;
 	}
 
-	public Date getData() {
+	public GregorianCalendar getData() {
 		return data;
 	}
 
-	public void setData(Date data) {
-		this.data = data;
+	public void setData(GregorianCalendar gregorianCalendar) {
+		this.data = gregorianCalendar;
 	}
 
 }
