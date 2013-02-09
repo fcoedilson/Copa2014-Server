@@ -61,4 +61,18 @@ public class ControladorPosts {
 		
 		return posts;
 	}
+
+	public List<Post> pegarTodosOsPostsDaTorcida(Jogo jogo, Time time) {
+		session = PreparaSessao.pegarSessao();
+		
+		Criteria criteria = session.createCriteria(Post.class)
+				.add(Restrictions.eq("jogo", jogo))
+				.add(Restrictions.eq("time", time))
+				.addOrder(Order.desc("id"));
+		
+		List<Post> posts = criteria.list();
+		session.close();
+		
+		return posts;
+	}
 }

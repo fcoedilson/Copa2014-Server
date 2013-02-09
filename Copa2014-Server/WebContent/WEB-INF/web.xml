@@ -139,4 +139,14 @@
     <servlet-name>ListarTodosOsPostsDoJogo</servlet-name>
     <url-pattern>/ListarTodosOsPostsDoJogo</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>ListarTodosOsPostsDaTorcida</display-name>
+    <servlet-name>ListarTodosOsPostsDaTorcida</servlet-name>
+    <servlet-class>com.github.bcfurtado.copaserver.servlets.ListarTodosOsPostsDaTorcida</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ListarTodosOsPostsDaTorcida</servlet-name>
+    <url-pattern>/ListarTodosOsPostsDaTorcida</url-pattern>
+  </servlet-mapping>
 </web-app>
