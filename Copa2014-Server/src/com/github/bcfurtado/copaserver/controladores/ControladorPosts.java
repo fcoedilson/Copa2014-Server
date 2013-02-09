@@ -75,4 +75,18 @@ public class ControladorPosts {
 		
 		return posts;
 	}
+	
+	public List<Post> pegarTodosOsPostsDoUsuario(Jogo jogo, Usuario usurio) {
+		session = PreparaSessao.pegarSessao();
+		
+		Criteria criteria = session.createCriteria(Post.class)
+				.add(Restrictions.eq("jogo", jogo))
+				.add(Restrictions.eq("usuario", usurio))
+				.addOrder(Order.desc("id"));
+		
+		List<Post> posts = criteria.list();
+		session.close();
+		
+		return posts;
+	}
 }
